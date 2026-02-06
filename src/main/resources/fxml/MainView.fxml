@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.control.Button?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unicam.cs.mpgc.jtime119159.controller.MainController">
+   <children>
+      <TabPane layoutX="14.0" layoutY="14.0" prefHeight="572.0" prefWidth="772.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
+        <tabs>
+          <Tab text="Progetti">
+            <content>
+              <BorderPane>
+                  <top>
+                      <ToolBar>
+                          <items>
+                              <Button text="Nuovo Progetto" onAction="#handleAddProject"/>
+                              <Button text="Chiudi Progetto" onAction="#handleCloseProject"/>
+                              <Button text="Aggiorna" onAction="#handleRefreshProjects"/>
+                          </items>
+                      </ToolBar>
+                  </top>
+                  <center>
+                      <TableView fx:id="projectTable">
+                          <columns>
+                              <TableColumn fx:id="projectNameColumn" text="Nome" prefWidth="200.0"/>
+                              <TableColumn fx:id="projectDescriptionColumn" text="Descrizione" prefWidth="300.0"/>
+                              <TableColumn fx:id="projectStatusColumn" text="Stato" prefWidth="100.0"/>
+                          </columns>
+                      </TableView>
+                  </center>
+              </BorderPane>
+            </content>
+          </Tab>
+          <Tab text="Attività">
+            <content>
+              <BorderPane>
+                  <top>
+                      <ToolBar>
+                          <items>
+                              <Label text="Filtra per Progetto:"/>
+                              <ComboBox fx:id="projectFilterComboBox" prefWidth="150.0" onAction="#handleFilterTasks" promptText="Tutti i progetti"/>
+                              <Button text="Nuova Attività" onAction="#handleAddTask"/>
+                              <Button text="Completa" onAction="#handleCompleteTask"/>
+                              <Button text="Elimina" onAction="#handleDeleteTask"/>
+                          </items>
+                      </ToolBar>
+                  </top>
+                  <center>
+                      <TableView fx:id="taskTable">
+                          <columns>
+                              <TableColumn fx:id="taskNameColumn" text="Attività" prefWidth="200.0"/>
+                              <TableColumn fx:id="taskDescriptionColumn" text="Descrizione" prefWidth="250.0"/>
+                              <TableColumn fx:id="taskProjectColumn" text="Progetto" prefWidth="150.0"/>
+                              <TableColumn fx:id="taskEstimatedColumn" text="Stima (min)" prefWidth="80.0"/>
+                              <TableColumn fx:id="taskActualColumn" text="Effettivo (min)" prefWidth="80.0"/>
+                              <TableColumn fx:id="taskDateColumn" text="Data Scadenza" prefWidth="100.0"/>
+                              <TableColumn fx:id="taskCompletedColumn" text="Completata" prefWidth="80.0"/>
+                          </columns>
+                      </TableView>
+                  </center>
+              </BorderPane>
+            </content>
+          </Tab>
+            <Tab text="Pianificazione">
+               <content>
+                  <BorderPane>
+                      <top>
+                          <ToolBar>
+                              <items>
+                                  <Label text="Pianificazione Giornaliera:"/>
+                                  <DatePicker fx:id="planningDatePicker" onAction="#handlePlanningDateChange"/>
+                                  <Button text="Assegna a oggi" onAction="#handleAssignToDate"/>
+                              </items>
+                          </ToolBar>
+                      </top>
+                      <center>
+                          <TableView fx:id="planningTable">
+                              <columns>
+                                  <TableColumn fx:id="planningTaskColumn" text="Attività" prefWidth="250.0"/>
+                                  <TableColumn fx:id="planningProjectColumn" text="Progetto" prefWidth="150.0"/>
+                                  <TableColumn fx:id="planningTimeColumn" text="Stima (min)" prefWidth="100.0"/>
+                                  <TableColumn fx:id="planningStatusColumn" text="Completata" prefWidth="100.0"/>
+                              </columns>
+                          </TableView>
+                      </center>
+                  </BorderPane>
+               </content>
+            </Tab>
+            <Tab text="Report">
+               <content>
+                  <BorderPane>
+                      <top>
+                          <ToolBar>
+                              <items>
+                                  <Button text="Genera Report Completo" onAction="#handleGenerateReport"/>
+                              </items>
+                          </ToolBar>
+                      </top>
+                      <center>
+                          <javafx.scene.control.TextArea fx:id="reportTextArea" editable="false" wrapText="true" style="-fx-font-family: 'Consolas', 'Monospace';"/>
+                      </center>
+                  </BorderPane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
